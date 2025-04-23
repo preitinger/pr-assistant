@@ -1,0 +1,50 @@
+import { ${CAMEL_CASE}Req, T${CAMEL_CASE}Res } from "@/app/_lib/both/requests";
+import { NextRequest, NextResponse } from "next/server";
+import { productionOrDebugConsole as console } from "@/app/_lib/i18n/client";
+
+function myRes(res: T${CAMEL_CASE}Res) {
+    return NextResponse.json(res);
+}
+
+export async function POST(request: NextRequest) {
+
+    // BEGIN Alternative 1
+    const check = await checkRequest(${CAMEL_CASE}Req, request);
+    if (check.type === 'error') return check.response;
+    const { json } = check;
+    // END Alternative 1
+
+    // BEGIN Alternative 2
+    // const check = await checkSessionAndRequest(${CAMEL_CASE}Req, request);
+    // if (check.type === 'error') return check.response;
+    // const { db, json } = check;
+    // END Alternative 2
+
+    // BEGIN Alternative 3
+    // const check = await checkAuthor(${CAMEL_CASE}Req, request)
+    // console.log('check.type', check.type);
+    // if (check.type === 'error') return check.response;
+    // if (check.type === 'noAuth') return myRes({
+    //     type: 'noAuth'
+    // })
+    // const { db, json } = check;
+    // END Alternative 3
+
+    // BEGIN Alternative 4
+    // const check = await checkAdmin(${CAMEL_CASE}Req, request)
+    // console.log('check.type', check.type);
+    // if (check.type === 'error') return check.response;
+    // if (check.type === 'noAuth') return myRes({
+    //     type: 'noAuth'
+    // })
+    // const { db, json } = check;
+    // END Alternative 4
+
+
+    // TODO implement functionality
+
+    return myRes({
+        type: 'success',
+        // TODO ...?
+    })
+}

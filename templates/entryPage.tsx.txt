@@ -1,0 +1,26 @@
+import LangPage from "@/app/components/LangPage";
+import { TSupportedLanguages } from "@/app/_lib/i18n/langCode";
+import { estimateUserAgent } from "@/app/_lib/server/serverUtils";
+import { T${CAP_STATE}State2 } from "@/app/_states/_${LOW_STATE}/${CAP_STATE}Page";
+
+export default async function Page(
+    props: {
+        params: Promise<{
+            lang: TSupportedLanguages;
+            /* EDIT here */
+            exampleAttribute: string;
+        }>
+    }
+) {
+    const params = await props.params;
+    const userAgent = (await estimateUserAgent()) ?? null;
+
+    // EDIT here
+    const exampleAttribute = decodeURIComponent(params.exampleAttribute);
+    const histState2: T${CAP_STATE}State2 = {
+        type: '${LOW_STATE}',
+        exampleAttribute,
+    };
+
+    return <LangPage userAgent={userAgent} lang={params.lang} histState2AtStart={histState2} />
+}

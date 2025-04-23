@@ -1,0 +1,70 @@
+'use client'
+
+import { productionOrDebugConsole as console } from "@/app/_lib/i18n/client";
+import Showable from "@/app/components/Showable";
+import { Dispatch, SetStateAction } from "react";
+import * as rt from "runtypes";
+import { TUserData } from "../../_lib/both/data";
+import { addHistState2 } from "../../_lib/client/states";
+import { I18nClientArg } from "../../_lib/i18n/client";
+import { TSupportedLanguages } from "../../_lib/i18n/langCode";
+
+
+
+export const ${CAP_STATE}State2 = rt.Record({
+    type: rt.Literal('${LOW_STATE}'),
+    // TODO add real attributes for this state
+    exampleAttribute: rt.String,
+})
+export type T${CAP_STATE}State2 = rt.Static<typeof ${CAP_STATE}State2>
+
+addHistState2(${CAP_STATE}State2);
+console.debug('added ${CAP_STATE}State2');
+
+function stateToPath(s: T${CAP_STATE}State2): string[] {
+    const str: string[] = [s.type];
+
+
+    // TODO call for each attribute in ${CAP_STATE}State2: str.push('/'); str.push(encodeURIComponent(s.<attribute>)); 
+    str.push('/');
+    str.push(encodeURIComponent(s.exampleAttribute));
+
+    
+    return str;
+}
+
+export function push${CAP_STATE}State(s: T${CAP_STATE}State2, lang: TSupportedLanguages, setHistState2: Dispatch<SetStateAction<unknown>>, replace?: boolean) {
+    const path = [`/${lang}`, ...stateToPath(s)].join('');
+    if (replace) {
+        history.replaceState({ s }, '',
+            path);
+    } else {
+        history.pushState({ s }, '',
+            path);
+    }
+    setHistState2(s);
+}
+
+export interface ${CAP_STATE}PageProps {
+    l: I18nClientArg;
+    userData: TUserData | null;
+    userAgent: string | null;
+    histState2: unknown;
+    dark: boolean;
+    // hashChangePending: boolean;
+    // setHashChangePaused(paused: boolean): void;
+    setHistState2: Dispatch<SetStateAction<unknown>>;
+    setOtherSession: Dispatch<SetStateAction<boolean>>;
+
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function ${CAP_STATE}Page({ l, userData, userAgent, histState2, dark, setHistState2, setOtherSession
+    /* hashChangePending, */ /* setHashChangePaused, */
+}: ${CAP_STATE}PageProps) {
+    const myState = ${CAP_STATE}State2.guard(histState2) ? histState2 : null;
+
+    return <Showable show={myState != null}>
+        <h1>TODO ${CAP_STATE}Page ({myState?.exampleAttribute})</h1>
+    </Showable>
+}

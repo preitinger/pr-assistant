@@ -1,0 +1,77 @@
+{
+    "name": "pr-assistant",
+    "displayName": "Assistant for Peter Reitinger",
+    "description": "Commands for code generation, i.e. for new state-page combinations",
+    "version": "0.0.3",
+    "engines": {
+        "vscode": "^1.99.2"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "pr-assistant.genState",
+                "title": "Generate a new state page combination"
+            },
+            {
+                "command": "pr-assistant.genTestFile",
+                "title": "Generate test file"
+            },
+            {
+                "command": "pr-assistant.createNewFile",
+                "title": "create new test file"
+            },
+            {
+                "command": "pr-assistant.genApiRoute",
+                "title": "Generate an api route"
+            },
+            {
+                "command": "pr-assistant.findRoute",
+                "title": "find route file"
+            },
+            {
+                "command": "pr-assistant.switchDevelop",
+                "title": "install submodule"
+            },
+            {
+                "command": "pr-assistant.mergeToMain",
+                "title": "install submodule"
+            },
+            {
+                "command": "pr-assistant.subModuleInstall",
+                "title": "install submodule"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceLangId == typescript || resourceLangId == typescriptreact",
+                    "command": "pr-assistant.findRoute"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.99.0",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "20.x",
+        "@typescript-eslint/eslint-plugin": "^8.28.0",
+        "@typescript-eslint/parser": "^8.28.0",
+        "eslint": "^9.23.0",
+        "typescript": "^5.8.2",
+        "@vscode/test-cli": "^0.0.10",
+        "@vscode/test-electron": "^2.4.1"
+    }
+}
