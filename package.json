@@ -2,7 +2,7 @@
     "name": "pr-assistant",
     "displayName": "Assistant for Peter Reitinger",
     "description": "Commands for code generation, i.e. for new state-page combinations",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "engines": {
         "vscode": "^1.99.2"
     },
@@ -34,16 +34,20 @@
                 "title": "find route file"
             },
             {
-                "command": "pr-assistant.switchDevelop",
-                "title": "install submodule"
+                "command": "pr-assistant.commonSubmoduleAdd",
+                "title": "Execute common-submodule-add.sh"
             },
             {
-                "command": "pr-assistant.mergeToMain",
-                "title": "install submodule"
+                "command": "pr-assistant.submodulesToMain",
+                "title": "Execute submodules-to-main.sh"
             },
             {
-                "command": "pr-assistant.subModuleInstall",
-                "title": "install submodule"
+                "command": "pr-assistant.startCommonFeatureBranch",
+                "title": "Start common feature branch."
+            },
+            {
+                "command": "pr-assistant.finishCommonFeatureBranch",
+                "title": "Finish common feature branch."
             }
         ],
         "menus": {

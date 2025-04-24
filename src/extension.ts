@@ -9,7 +9,7 @@ import * as vscode from 'vscode';
 import { genApiRoute } from './apiRoutes';
 import { findRoute } from './findRoute';
 import { subPath, upCase, workspaceRoot, workspaceUri } from './utils';
-import { subModuleInstall } from './subModule';
+import { commonSubmoduleAdd, finishCommonFeatureBranch, startCommonFeatureBranch, submodulesToMain } from './subModule';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -93,26 +93,17 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerTextEditorCommand("pr-assistant.findRoute", findRoute)
     );
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand("pr-assistant.switchDevelop", switchDevelop)
+        vscode.commands.registerCommand("pr-assistant.commonSubmoduleAdd", commonSubmoduleAdd)
     );
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand("pr-assistant.mergeToMain", mergeToMain)
+        vscode.commands.registerCommand("pr-assistant.submodulesToMain", submodulesToMain)
     );
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand("pr-assistant.subModuleInstall", subModuleInstall)
+        vscode.commands.registerCommand("pr-assistant.startCommonFeatureBranch", startCommonFeatureBranch)
     );
-}
-
-async function switchDevelop() {
-    // TODO switch from branch main to branch develop
-}
-
-async function mergeToMain() {
-    // From branch develop commit all and create a tag on branch develop.
-    // Increment webapp version.
-    // Convert submodules in private git repositories to copies of the content
-    // without any .git folder or file.
-    // Merge to main (or reset or whatever is best in git).
+    context.subscriptions.push(
+        vscode.commands.registerCommand("pr-assistant.finishCommonFeatureBranch", finishCommonFeatureBranch)
+    );
 }
 
 async function genState() {
