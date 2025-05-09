@@ -102,20 +102,20 @@ async function appendRequest(wsUri: (relPath: string) => vscode.Uri, camelCase: 
 
     await fd.appendFile(`
 
-export const ${camelCase}Req = rt.Record({
+export const ${camelCase}Req = rt.Object({
     id: rt.String
 });
 export type T${camelCase}Req = rt.Static<typeof ${camelCase}Req>;
 
 export const ${camelCase}Res = rt.Union(
-    rt.Record({
+    rt.Object({
         type: rt.Literal('success'),
         // TODO individual result values?
     }),
-    rt.Record({
+    rt.Object({
         type: SessionErrorType
     }),
-    rt.Record({
+    rt.Object({
         type: rt.Literal('noAuth') // TODO notwendig, wenn checkAdmin oder checkAuthor verwendet wird
     }),
     // TODO more specific error types?
