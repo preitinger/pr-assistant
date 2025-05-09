@@ -2,7 +2,7 @@
     "name": "pr-assistant",
     "displayName": "Assistant for Peter Reitinger",
     "description": "Commands for code generation, i.e. for new state-page combinations",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "engines": {
         "vscode": "^1.99.2"
     },
